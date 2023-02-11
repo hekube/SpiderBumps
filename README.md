@@ -42,6 +42,7 @@ a and b. Then, the polar coordinates are transformed to Euclidian coordinates, w
 mapped to the raster.
 
 Euclidian coordinate system with values for 4 variables.
+```
 +y . . . | . . .
    . . . | o . .
    . o . | . . .
@@ -50,8 +51,9 @@ Euclidian coordinate system with values for 4 variables.
    . . . | . o .
 -y . . . | . . .
   -x          +x
-
+```
 Raster with resolution n=7 and 4 vertices x, corresponding with the values o.
+```
    1 2 3 4 5 6 7
 1  . . . . . . .
 2  . . . . x . .
@@ -60,7 +62,7 @@ Raster with resolution n=7 and 4 vertices x, corresponding with the values o.
 5  . . x . . . .
 6  . . . . . x .
 7  . . . . . . .
-
+```
 Filling the polygon described by the vertices is done with function pnpoly (cf.
 https://wrfranklin.org/Research/Short_Notes/pnpoly.html). The R-implementation is
 from https://github.com/ornelles/EBImageExtra/.
@@ -72,7 +74,7 @@ not an issue if function raster runs in parallel (batches of cases on different 
 The spider web of a single case is "drawn" into the matrix M as a filled
 polygon, where the data of the cases are the vertices. The elements of M are
 equal to 1 or 0, depending whether the spider web covers the matrix element.
-
+```
 . . . . . . .
 . . . 1 1 . .
 . 1 1 1 1 . .
@@ -80,13 +82,13 @@ equal to 1 or 0, depending whether the spider web covers the matrix element.
 . . 1 1 1 1 .
 . . . . 1 . .
 . . . . . . .
-
+```
 
 Calculate matrix S
 ------------------
 S is the sum of matrices M for all cases. The Elements of S are the numbers of
 overlapping spider webs.
-
+```
 . . . . . . .
 . . . 1 1 . .
 . 1 2 2 1 1 .
@@ -94,16 +96,17 @@ overlapping spider webs.
 . 2 3 3 2 1 .
 . . 2 2 1 . .
 . . . . . . .
-
+```
 
 Display S with rgl
 ------------------
+```
 z=t(S[nrow(S):1,]) ### reverse rows so that variable 1 is on top, bot on bottom
 x=1:nrow(z)
 y=1:ncol(z)
 persp3d(x,y,z,box=FALSE,col=rgb(102,103,171,maxColorValue=255))
 aspect3d(1,1,0.5)
-
+```
 
 Helper
 ------
@@ -121,16 +124,16 @@ in a compact form. It is only useful for small matrices with 1-digit elements.
 Prerequisites
 -------------
 Package EBImage is from Bioconductor. If not done earlier, do the next two steps:
-
+```
 install.packages("BiocManager")
 BiocManager::install("EBImage")
-
+```
 Package EBImageExtra is from github. If not done earlier, do the next two steps:
-
+```
 install.packages("devtools")
 library(devtools)
 install_github("ornelles/EBImageExtra")
-
+```
 Package rgl is from CRAN.
 
 
