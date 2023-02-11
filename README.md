@@ -1,10 +1,7 @@
-# SpiderBumps
+# Spider Bumps
 3D-display of many overlapping spider web diagrams (radar plots).
 
-HOW TO CREATE SPIDER BUMPS
---------------------------
 hekube - February 2023
-
 
 Content
 --------
