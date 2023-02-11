@@ -137,5 +137,5 @@ Package rgl is from CRAN.
 Note for Windows users
 ----------------------
 Function raster uses function mclapply from package parallel. This may not work under Windows.
-Windows users may replace mclappy by function lapply.
+Windows users may replace mclapply by function lapply.
 
