@@ -20,7 +20,7 @@ D has a row per case and k variables which define the spider webs of the cases.
 
 The vectors a and b have length k. The elements correspond with the variables as
 they stand from left to right in D. The vector a includes the smallest and the
-vector b the biggest values of the axes of the spider web. Use function dataLimits(D)
+vector b the biggest values of the axes of the spider web. Use function ```dataLimits(D)```
 with D as data.frame to create the list with automatically calculated limits.
 
 
@@ -38,23 +38,23 @@ Function raster calculates the polar coordinates for the cases considering the a
 a and b. Then, the polar coordinates are transformed to Euclidian coordinates, which are finally
 mapped to the raster.
 
-Euclidian coordinate system with values for 4 variables.
+Euclidian coordinate system with values of three variables.
 ```
 +y . . . | . . .
-   . . . | o . .
-   . o . | . . .
+   . . . o . . .
+   . . . | . . .
    - - - + - - -
    . . o | . . .
    . . . | . o .
 -y . . . | . . .
   -x          +x
 ```
-Raster with resolution n=7 and 4 vertices x, corresponding with the values o.
+Raster with resolution n=7 and three vertices x, corresponding with the values o.
 ```
    1 2 3 4 5 6 7
 1  . . . . . . .
-2  . . . . x . .
-3  . x . . . . .
+2  . . . x . . .
+3  . . . . . . .
 4  . . . . . . .
 5  . . x . . . .
 6  . . . . . x .
@@ -73,11 +73,11 @@ polygon, where the data of the cases are the vertices. The elements of M are
 equal to 1 or 0, depending whether the spider web covers the matrix element.
 ```
 . . . . . . .
+. . . 1 . . .
 . . . 1 1 . .
-. 1 1 1 1 . .
 . . 1 1 1 . .
 . . 1 1 1 1 .
-. . . . 1 . .
+. . . . . 1 .
 . . . . . . .
 ```
 
@@ -87,21 +87,21 @@ S is the sum of matrices M for all cases. The Elements of S are the numbers of
 overlapping spider webs.
 ```
 . . . . . . .
-. . . 1 1 . .
-. 1 2 2 1 1 .
-. 2 4 5 4 2 .
-. 2 3 3 2 1 .
-. . 2 2 1 . .
+. . . 1 . . .
+. . 1 2 1 . .
+. . 4 5 4 1 .
+. . 3 3 2 1 .
+. . . . 1 1 .
 . . . . . . .
 ```
 
 Display S with rgl
 ------------------
 ```
-z=t(S[nrow(S):1,]) ### reverse rows so that variable 1 is on top, bot on bottom
+z=t(S[nrow(S):1,]) ### reverse rows so that variable 1 is on top, not on bottom
 x=1:nrow(z)
 y=1:ncol(z)
-persp3d(x,y,z,box=FALSE,col=rgb(102,103,171,maxColorValue=255))
+persp3d(x,y,z,box=FALSE,col="#BB2649")
 aspect3d(1,1,0.5)
 ```
 
@@ -109,12 +109,12 @@ Helper
 ------
 The list DL can be created automatically using function dataLimits
 If "data" is the name of the data.frame including the data, just call
-DL=dataLimits(data), then the vectors a and b include the minima and maxima
+```DL=dataLimits(data)```, then the vectors a and b include the minima and maxima
 of the corresponding variables.
 
-Function spiderBump(DL) is a wrapper to do all calculations and the display with rgl.
+Function ```spiderBump(DL)``` is a wrapper to do all calculations and the display with rgl.
 
-Function kompakt(<matrix>) shows the matrices stored in the output of raster
+Function ```kompakt(<matrix>)``` shows the matrices stored in the output of raster
 in a compact form. It is only useful for small matrices with 1-digit elements.
 
 
